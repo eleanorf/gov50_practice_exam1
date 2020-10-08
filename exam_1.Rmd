@@ -1,0 +1,52 @@
+---
+title: "Practice Exam 1"
+author: "Eleanor Fitzgibbons"
+date: "10/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readr)
+```
+
+## Question 1
+
+```{r}
+colleges <- read_csv("raw_data/college_scorecard.csv",
+  col_types = cols(
+    name = col_character(),
+    state = col_character(),
+    region = col_character(),
+    campuses = col_integer(),
+    id = col_integer(),
+    id_long = col_integer(),
+    class = col_character(),
+    locale = col_character(),
+    ug_enrollment = col_character(),
+    main_campus = col_integer(),
+    hbcu = col_integer(),
+    women_only = col_integer(),
+    # not sure about this one because it's 1 or NA
+    religious_affiliation = col_integer(),
+    admission_rate = col_double(),
+    social_sciences = col_double(),
+    physical_sciences = col_double(),
+    ethnic_gender_studies = col_double(),
+    comp_sci = col_double(),
+    avg_faculty_salary = col_integer(),
+    completion_rate = col_character(),
+    pell_grant = col_double(),
+    first_gen_completion_4 = col_double()))
+
+q1 <- colleges %>% 
+  filter(state == "NJ") %>% 
+  select(name, pell_grant) %>% 
+  arrange(desc(pell_grant)) %>% 
+  slice(1:10)
+q1
+```
+
+##
+
